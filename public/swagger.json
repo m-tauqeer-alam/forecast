@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "forecast API Documentation",
+    "version": "v1"
+  },
+  "paths": {
+    "/forecast": {
+      "get": {
+        "operationId": "getforecast",
+        "summary": "Get weather condition for a city",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "city",
+            "type": "string",
+            "required": true,
+            "description": "To return the weather for the city ex:chennai"
+          },
+          {
+            "in": "query",
+            "name": "orderBy",
+            "type": "string",
+            "required": true,
+            "description": "The order of data to return. vlaues [desc|asc]. Default order is asc"
+          }
+        ],
+        "produces": [ "application/json" ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": {
+                "dt": 1631728800,
+                "temp": {
+                  "temp": 303.14,
+                  "temp_min": 302.86,
+                  "temp_max": 303.14,
+                  "pressure": 1007,
+                  "sea_level": 1007,
+                  "grnd_level": 1005,
+                  "humidity": 79,
+                  "temp_kf": 0.28
+                },
+                "wind": {
+                  "speed": 4.74,
+                  "deg": 183
+                }
+              }
+            }
+          },
+          "404": { "description": "404 Not Found" },
+          "500": { "description": "500 Internal Server Error" }
+        }
+      }
+    }
+  },
+  "consumes": [ "application/json" ]
+}
